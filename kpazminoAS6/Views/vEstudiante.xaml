@@ -35,8 +35,10 @@
                 <Label Text="Edad" TextColor="GreenYellow" Grid.Column="3" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </Grid>
 
-
+            
             <CollectionView x:Name="listEstudiantes"
+                        SelectionChanged="listEstudiantes_SelectionChanged"
+                        SelectionMode="Single"
                         Grid.Row="1"
                         Grid.Column="0">
                 <CollectionView.ItemTemplate>
@@ -59,8 +61,12 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                
             </CollectionView>
 
         </Grid>
+        <Button x:Name="btnAgregar"
+                Text="Agregar Estudiante"
+                Clicked="btnAgregar_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

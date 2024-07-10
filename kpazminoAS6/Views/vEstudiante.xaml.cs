@@ -1,3 +1,4 @@
+using kpazminoAS6.Models;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 
@@ -6,11 +7,12 @@ namespace kpazminoAS6.Views;
 public partial class vEstudiante : ContentPage
 {
 	//variable para crear mi conexion con la ip de mi maquina donde se ejecuta la bd en xamp
-	private const string Url = "http://192.168.16.48/semana6/estudiantews.php";
+	private const string Url = "http://10.2.8.79/semana6/estudiantews.php";
 	private readonly HttpClient client = new HttpClient();
 	//contenedor temporal para los datos
 	private ObservableCollection<Models.Estudiante> est;
-	public vEstudiante()
+    private Estudiante selectedEstu;
+    public vEstudiante()
 	{
 		InitializeComponent();
 		//consumir el metodo mostrar
@@ -25,4 +27,15 @@ public partial class vEstudiante : ContentPage
 		est = new ObservableCollection<Models.Estudiante>(mostrar);
 		listEstudiantes.ItemsSource = est;
 	}
+
+    private void btnAgregar_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushAsync(new Views.vAgregar());
+    }
+
+	private void listEstudiantes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		var selectedEstu = e.CurrentSelection.FirstOrDefault() as Estudiante;
+		Navigation.PushAsync(new ActElim(selectedEstu));
+    }
 }
