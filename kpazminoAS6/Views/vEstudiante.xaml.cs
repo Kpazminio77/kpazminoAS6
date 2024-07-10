@@ -7,7 +7,7 @@ namespace kpazminoAS6.Views;
 public partial class vEstudiante : ContentPage
 {
 	//variable para crear mi conexion con la ip de mi maquina donde se ejecuta la bd en xamp
-	private const string Url = "http://10.2.8.79/semana6/estudiantews.php";
+	private const string Url = "http://172.21.96.65/semana6/estudiantews.php";
 	private readonly HttpClient client = new HttpClient();
 	//contenedor temporal para los datos
 	private ObservableCollection<Models.Estudiante> est;
@@ -17,7 +17,12 @@ public partial class vEstudiante : ContentPage
 		InitializeComponent();
 		//consumir el metodo mostrar
 		mostrar();
-	}
+
+        MessagingCenter.Subscribe<ActElim>(this, "ActualizarLista", sender =>
+        {
+            mostrar();
+        });
+    }
 
 	//creo el metodo par amostrar
 	public async void mostrar()

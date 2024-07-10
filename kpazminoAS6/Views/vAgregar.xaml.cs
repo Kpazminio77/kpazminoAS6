@@ -19,7 +19,7 @@ public partial class vAgregar : ContentPage
 			parametros.Add("apellido", txtApellido.Text);
 			parametros.Add("edad", txtEdad.Text);
 
-			cliente.UploadValues("http://10.2.8.79/semana6/estudiantews.php", "POST", parametros);
+			cliente.UploadValues("http://172.21.96.65/semana6/estudiantews.php", "POST", parametros);
 			Navigation.PushAsync(new vEstudiante());
 
 
